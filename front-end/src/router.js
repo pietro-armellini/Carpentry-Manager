@@ -3,13 +3,13 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes =  [
     {
         path: "/",
-        alias: "/tutorials",
-        name: "tutorials",
+        alias: "/activities",
+        name: "activities",
         component: () => import("./components/TutorialsList")
     },
     {
-        path: "/tutorials/:id",
-        name: "tutorial-details",
+        path: "/activities/:id",
+        name: "activity-details",
         component: () => import("./components/Tutorial")
     },
     {

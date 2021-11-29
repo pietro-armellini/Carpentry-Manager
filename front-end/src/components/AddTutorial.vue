@@ -41,6 +41,7 @@ export default {
   name: "add-tutorial",
   data() {
     return {
+      //convert in activity
       tutorial: {
         id: null,
         title: "",
@@ -52,6 +53,7 @@ export default {
   },
   methods: {
     saveTutorial() {
+      //convert in activity
       let data = {
         title: this.tutorial.title,
         description: this.tutorial.description

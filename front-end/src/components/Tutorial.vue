@@ -57,6 +57,7 @@
 import TutorialDataService from "../services/TutorialDataService";
 
 export default {
+  //convert in activity
   name: "tutorial",
   data() {
     return {
@@ -76,6 +77,7 @@ export default {
           });
     },
 
+    //no longer used
     updatePublished(status) {
       let data = {
         id: this.currentTutorial.id,
@@ -95,6 +97,7 @@ export default {
           });
     },
 
+    //no longer used
     updateTutorial() {
       TutorialDataService.update(this.currentTutorial.id, this.currentTutorial)
           .then(response => {
@@ -106,6 +109,7 @@ export default {
           });
     },
 
+    //convert in activity
     deleteTutorial() {
       TutorialDataService.delete(this.currentTutorial.id)
           .then(response => {

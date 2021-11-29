@@ -1,10 +1,10 @@
 //Adds on: pagination -> tutorial: https://www.bezkoder.com/node-js-sequelize-pagination-mysql/
 
 const db = require("../models");
-const Tutorial = db.tutorials;
-const Op = db.Sequelize.Op;
+const Activity = db.activity;
+//const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and Save a new Activity
 exports.create = (req, res) => {
 
     //console.log();
@@ -17,22 +17,26 @@ exports.create = (req, res) => {
         return;
     }
 
-    // Create a Tutorial
+    // Create a Activity
     const tutorial = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        id: -1,
+        idUser: -1,
+        idCommission: -1,
+        idManufacturing: -1,
+        date: req.body.date,
+        notes: req.body.notes,
+        time: req.body.time
     };
 
-    // Save Tutorial in the database
-    Tutorial.create(tutorial)
+    // Save Activity in the database
+    Activity.create(tutorial)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Tutorial."
+                    err.message || "Some error occurred while creating the Activity."
             });
         });
 };
@@ -40,10 +44,9 @@ exports.create = (req, res) => {
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
-    let condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+    const idCommission = req.query.idCommission;
 
-    Tutorial.findAll({ where: condition })
+    Activity.findAll()
         .then(data => {
             res.send(data);
         })
@@ -55,38 +58,39 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single Tutorial with an id
+// Find a single Activity with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Tutorial.findByPk(id)
+    Activity.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data);
             } else {
                 res.status(404).send({
-                    message: `Cannot find Tutorial with id=${id}.`
+                    message: `Cannot find Activity with id=${id}.`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Tutorial with id=" + id
+                message: "Error retrieving Activity with id=" + id
             });
         });
 };
 
-// Update a Tutorial by the id in the request
+/*
+// Update a Activity by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Tutorial.update(req.body, {
+    Activity.update(req.body, {
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Tutorial was updated successfully."
+                    message: "Activity was updated successfully."
                 });
             } else {
                 res.send({
@@ -96,39 +100,41 @@ exports.update = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Tutorial with id=" + id
+                message: "Error updating Activity with id=" + id
             });
         });
 };
+ */
 
-// Delete a Tutorial with the specified id in the request
+// Delete a Activity with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Tutorial.destroy({
+    Activity.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Tutorial was deleted successfully!"
+                    message: "Activity was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+                    message: `Cannot delete Activity with id=${id}. Maybe Activity was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Tutorial with id=" + id
+                message: "Could not delete Activity with id=" + id
             });
         });
 };
 
+/*
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-    Tutorial.destroy({
+    Activity.destroy({
         where: {},
         truncate: false
     })
@@ -142,17 +148,20 @@ exports.deleteAll = (req, res) => {
             });
         });
 };
+ */
 
 // Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-    Tutorial.findAll({ where: { published: true } })
+exports.findAllFromCommission = (req, res) => {
+    const idCommission = req.query.idCommission;
+
+    Activity.findAll({ where: { idCommission: idCommission } })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    err.message || "Some error occurred while retrieving activities."
             });
         });
 };

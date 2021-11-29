@@ -57,6 +57,7 @@
 import TutorialDataService from "../services/TutorialDataService";
 
 export default {
+  //convert in activity
   name: "tutorials-list",
   data() {
     return {
@@ -67,6 +68,7 @@ export default {
     };
   },
   methods: {
+    //convert in activity
     retrieveTutorials() {
       TutorialDataService.getAll()
           .then(response => {
@@ -89,6 +91,7 @@ export default {
       this.currentIndex = tutorial ? index : -1;
     },
 
+    //no longer used
     removeAllTutorials() {
       TutorialDataService.deleteAll()
           .then(response => {
@@ -100,6 +103,7 @@ export default {
           });
     },
 
+    //convert in search activity by idCommission
     searchTitle() {
       TutorialDataService.findByTitle(this.title)
           .then(response => {
