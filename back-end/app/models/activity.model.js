@@ -1,10 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
     const Activity = sequelize.define("activity", {
         id: {
-          type: Sequelize.INTEGER
-        },
-        idUser: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         idCommission: {
             type: Sequelize.INTEGER

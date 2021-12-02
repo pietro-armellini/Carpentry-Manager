@@ -20,5 +20,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.activity = require("./activity.model.js")(sequelize, Sequelize);
+db.commission =  require("./commission.model.js")(sequelize, Sequelize);
+db.manufacturing = require("./manufacturing.model.js")(sequelize, Sequelize);
 
 module.exports = db;

@@ -4,10 +4,10 @@
       <router-link to="/" class="navbar-brand">G06</router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/activities" class="nav-link">Tutorials</router-link>
+          <router-link to="/activities" class="nav-link">Lista attività</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/add" class="nav-link">Add</router-link>
+          <router-link to="/add" class="nav-link">Aggiungi attività</router-link>
         </li>
       </div>
     </nav>

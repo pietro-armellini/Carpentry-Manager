@@ -29,13 +29,15 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+//add routes
+require("./app/routes/activity.routes")(app);
+require("./app/routes/commission.routes")(app);
+require("./app/routes/manufacturing.routes")(app);
+
 // simple route
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to G06 middleware." });
 });
-
-//add routes
-require("./app/routes/turorial.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

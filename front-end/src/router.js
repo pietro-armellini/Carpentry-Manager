@@ -5,17 +5,17 @@ const routes =  [
         path: "/",
         alias: "/activities",
         name: "activities",
-        component: () => import("./components/TutorialsList")
+        component: () => import("./components/ActivitiesList")
     },
     {
         path: "/activities/:id",
         name: "activity-details",
-        component: () => import("./components/Tutorial")
+        component: () => import("./components/Activity")
     },
     {
         path: "/add",
         name: "add",
-        component: () => import("./components/AddTutorial")
+        component: () => import("./components/AddActivity")
     }
 ];
 

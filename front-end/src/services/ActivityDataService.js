@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class TutorialDataService {
+class ActivityDataService {
     getAll() {
         return http.get("/activities");
     }
@@ -13,7 +13,6 @@ class TutorialDataService {
         return http.post("/activities", data);
     }
 
-    //no longer used
     update(id, data) {
         return http.put(`/activities/${id}`, data);
     }
@@ -22,15 +21,10 @@ class TutorialDataService {
         return http.delete(`/activities/${id}`);
     }
 
-    //no longer used
-    deleteAll() {
-        return http.delete(`/activities`);
-    }
-
-    //convert in search activity by idCommission
-    findByTitle(idCommission) {
-        return http.get(`/activities?idCommission=${idCommission}`);
+    getByIdCommission(idCommission) {
+        if(idCommission===-1) return this.getAll();
+        else return http.get(`/activities/byIdCommission?idCommission=${idCommission}`);
     }
 }
 
-export default new TutorialDataService();
+export default new ActivityDataService();

@@ -7,19 +7,18 @@ const Activity = db.activity;
 // Create and Save a new Activity
 exports.create = (req, res) => {
 
-    //console.log();
-
     // Validate request
-    if (!req.body.title) {
+    if (!(
+        //req.body.idUser && req.body.idCommission && req.body.idManufacturing &&
+        req.body.date && req.body.time)) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Content can not be empty! req: "+req.body.toString()
         });
         return;
     }
 
     // Create a Activity
-    const tutorial = {
-        id: -1,
+    const activity = {
         idUser: -1,
         idCommission: -1,
         idManufacturing: -1,
@@ -28,8 +27,11 @@ exports.create = (req, res) => {
         time: req.body.time
     };
 
+    console.log('Adding new activity: ');
+    console.log(activity);
+
     // Save Activity in the database
-    Activity.create(tutorial)
+    Activity.create(activity)
         .then(data => {
             res.send(data);
         })
@@ -42,10 +44,8 @@ exports.create = (req, res) => {
 };
 
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Activities from the database.
 exports.findAll = (req, res) => {
-    const idCommission = req.query.idCommission;
-
     Activity.findAll()
         .then(data => {
             res.send(data);
@@ -53,10 +53,11 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    err.message || "Some error occurred while retrieving activities."
             });
         });
 };
+
 
 // Find a single Activity with an id
 exports.findOne = (req, res) => {
@@ -79,12 +80,17 @@ exports.findOne = (req, res) => {
         });
 };
 
-/*
+
 // Update a Activity by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Activity.update(req.body, {
+    // Updated Activity
+    const activity = {
+        notes: req.body.notes
+    };
+
+    Activity.update(activity, {
         where: { id: id }
     })
         .then(num => {
@@ -94,7 +100,7 @@ exports.update = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+                    message: `Cannot update Activity with id=${id}. Maybe Activity was not found or req.body is empty!`
                 });
             }
         })
@@ -104,7 +110,7 @@ exports.update = (req, res) => {
             });
         });
 };
- */
+
 
 // Delete a Activity with the specified id in the request
 exports.delete = (req, res) => {
@@ -131,28 +137,12 @@ exports.delete = (req, res) => {
         });
 };
 
-/*
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-    Activity.destroy({
-        where: {},
-        truncate: false
-    })
-        .then(nums => {
-            res.send({ message: `${nums} Tutorials were deleted successfully!` });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while removing all tutorials."
-            });
-        });
-};
- */
 
-// Find all published Tutorials
+// Find all Activities from one commission
 exports.findAllFromCommission = (req, res) => {
     const idCommission = req.query.idCommission;
+
+    console.log(idCommission);
 
     Activity.findAll({ where: { idCommission: idCommission } })
         .then(data => {
@@ -165,4 +155,3 @@ exports.findAllFromCommission = (req, res) => {
             });
         });
 };
-
