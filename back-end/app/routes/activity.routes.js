@@ -9,8 +9,8 @@ module.exports = app => {
     // Retrieve all Activities
     router.get("/", activities.findAll);
 
-    // Retrieve all Activities matching idCommission
-    router.get("/byIdCommission", activities.findAllFromCommission);
+    // Retrieve all Activities matching commissionName
+    router.get("/byCommissionName", activities.findAllFromCommission);
 
     // Retrieve a single Activity with id
     router.get("/:id", activities.findOne);

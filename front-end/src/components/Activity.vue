@@ -10,17 +10,17 @@
         />
       </div>
       <div class="form-group">
-        <label for="idCommission">idCommission</label>
-        <input type="text" class="form-control" id="idCommission"
+        <label for="commissionName">commissionName</label>
+        <input type="text" class="form-control" id="commissionName"
                readonly
-               v-model="currentActivity.idCommission"
+               v-model="currentActivity.commissionName"
         />
       </div>
       <div class="form-group">
-        <label for="idManufacturing">idManufacturing</label>
-        <input type="text" class="form-control" id="idManufacturing"
+        <label for="manufacturingName">manufacturingName</label>
+        <input type="text" class="form-control" id="manufacturingName"
                readonly
-               v-model="currentActivity.idManufacturing"
+               v-model="currentActivity.manufacturingName"
         />
       </div>
       <div class="form-group">

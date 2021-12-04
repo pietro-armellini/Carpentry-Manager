@@ -2,17 +2,15 @@ const db = require("../models");
 const Manufacturing = db.manufacturing;
 
 // Create and Save a new manufacturing
-exports.create = (req, res) => {
-    //ToDo
-};
-
-// Retrieve all manufacturing from the database.
 exports.findAll = (req, res) => {
-    //ToDo
-};
-
-// Find a single manufacturing with an id
-exports.findOne = (req, res) => {
-    const id = req.params.id;
-    //ToDo
+    Manufacturing.findAll()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving manufacturing."
+            });
+        });
 };

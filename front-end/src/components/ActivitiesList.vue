@@ -2,15 +2,32 @@
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by idCommission"
+        <div class="form-group">
+          <label for="commessa">Filtra per commessa</label>
+          <select class="form-control"
+                  id="commessa"
+                  v-model="commissionName"
+                  name="commessa"
+                  @change=searchByCommissionName
+          >
+            <option selected value="-1">Tutte le commesse</option>
+            <option v-for="option in commissions" :value="option.value" :key="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+        <!--
+        <input type="text" class="form-control" placeholder="Search by commissionName"
                v-model="activity"/>
+
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button"
-                  @click="searchByIdCommission"
+                  @click="searchByCommissionName"
           >
             Search
           </button>
         </div>
+        -->
       </div>
     </div>
     <div class="col-md-6">
@@ -40,10 +57,10 @@
           <label><strong>Tempo:</strong></label> {{ currentActivity.time}}
         </div>
         <div>
-          <label><strong>Id commessa:</strong></label> {{ currentActivity.idCommission}}
+          <label><strong>Commessa:</strong></label> {{ currentActivity.commissionName}}
         </div>
         <div>
-          <label><strong>Id lavorazione:</strong></label> {{ currentActivity.idManufacturing}}
+          <label><strong>Lavorazione:</strong></label> {{ currentActivity.manufacturingName}}
         </div>
         <div>
           <label><strong>Notes:</strong></label> {{ currentActivity.notes }}
@@ -61,6 +78,7 @@
 
 <script>
 import ActivityDataService from "../services/ActivityDataService";
+import CommissionDataService from "../services/CommissionDataService";
 
 export default {
   name: "activities-list",
@@ -69,10 +87,22 @@ export default {
       activities: [],
       currentActivity: null,
       currentIndex: -1,
-      activity: ""
+      activity: "",
+      commissions: [],
+      commissionName: null
     };
   },
   methods: {
+    retrieveCommissions() {
+      CommissionDataService.getAll()
+          .then(response => {
+            response.data.forEach(el => this.commissions.push({ text: el.name, value: el.name}));
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+
     retrieveActivities() {
       ActivityDataService.getAll()
           .then(response => {
@@ -95,8 +125,8 @@ export default {
       this.currentIndex = activity ? index : -1;
     },
 
-    searchByIdCommission() {
-      ActivityDataService.getByIdCommission(this.activity)
+    searchByCommissionName() {
+      ActivityDataService.getByCommissionName(this.commissionName)
           .then(response => {
             this.activities = response.data;
             this.setActiveActivity(null);
@@ -109,6 +139,7 @@ export default {
   },
   mounted() {
     this.retrieveActivities();
+    this.retrieveCommissions();
   }
 };
 </script>

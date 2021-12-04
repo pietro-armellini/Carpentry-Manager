@@ -1,6 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
     const Manufacturing = sequelize.define("manufacturing", {
-        //ToDo
+        name: {
+            type: Sequelize.STRING,
+            primaryKey: true,
+            allowNull: false
+        }
     });
     return Manufacturing;
 };

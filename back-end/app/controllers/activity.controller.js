@@ -2,45 +2,42 @@
 
 const db = require("../models");
 const Activity = db.activity;
-//const Op = db.Sequelize.Op;
 
 // Create and Save a new Activity
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
     // Validate request
-    if (!(
-        //req.body.idUser && req.body.idCommission && req.body.idManufacturing &&
+    if (!(req.body.commissionName &&
+        req.body.manufacturingName &&
         req.body.date && req.body.time)) {
         res.status(400).send({
-            message: "Content can not be empty! req: "+req.body.toString()
+            message: `Content can not be empty! req: {
+             commissionName: ${req.body.commissionName},
+             manufacturingName: ${req.body.manufacturingName}, 
+             date: ${req.body.date}, 
+             time: ${req.body.time}, 
+             notes: ${req.body.notes}`
         });
         return;
     }
 
-    // Create a Activity
     const activity = {
-        idUser: -1,
-        idCommission: -1,
-        idManufacturing: -1,
+        commissionName: req.body.commissionName,
+        manufacturingName: req.body.manufacturingName,
         date: req.body.date,
         notes: req.body.notes,
         time: req.body.time
     };
 
-    console.log('Adding new activity: ');
-    console.log(activity);
-
-    // Save Activity in the database
     Activity.create(activity)
-        .then(data => {
-            res.send(data);
+        .then(data =>
+        res.send(data)
+        ).catch(err =>
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating the Activity."
         })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Activity."
-            });
-        });
+    )
 };
 
 
@@ -81,7 +78,7 @@ exports.findOne = (req, res) => {
 };
 
 
-// Update a Activity by the id in the request
+// Update an Activity by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
 
@@ -140,11 +137,11 @@ exports.delete = (req, res) => {
 
 // Find all Activities from one commission
 exports.findAllFromCommission = (req, res) => {
-    const idCommission = req.query.idCommission;
+    const commissionName = req.query.commissionName;
 
-    console.log(idCommission);
+    console.log(commissionName);
 
-    Activity.findAll({ where: { idCommission: idCommission } })
+    Activity.findAll({ where: { commissionName: commissionName } })
         .then(data => {
             res.send(data);
         })

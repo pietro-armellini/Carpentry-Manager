@@ -23,4 +23,12 @@ db.activity = require("./activity.model.js")(sequelize, Sequelize);
 db.commission =  require("./commission.model.js")(sequelize, Sequelize);
 db.manufacturing = require("./manufacturing.model.js")(sequelize, Sequelize);
 
+db.activity.belongsTo(db.commission, {foreignKey: {name: 'commissionName', allowNull: false }});
+db.activity.belongsTo(db.manufacturing, {foreignKey: {name: 'manufacturingName', allowNull: false }});
+
+db.populate = async () => {
+    await require("../seeds/commissions.seed").populate(db.commission);
+    await require("../seeds/manufacturing.seed").populate(db.manufacturing);
+}
+
 module.exports = db;

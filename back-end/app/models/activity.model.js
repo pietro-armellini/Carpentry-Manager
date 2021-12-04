@@ -1,16 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Activity = sequelize.define("activity", {
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        idCommission: {
-            type: Sequelize.INTEGER
-        },
-        idManufacturing: {
-            type: Sequelize.INTEGER
-        },
         date: {
             type: Sequelize.DATEONLY
         },

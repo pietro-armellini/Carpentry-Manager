@@ -6,8 +6,5 @@ module.exports = app => {
     // Retrieve all Commissions
     router.get("/", commissions.findAll);
 
-    // Retrieve a single Commission with id
-    router.get("/:id", commissions.findOne);
-
     app.use('/api/commissions', router);
 };

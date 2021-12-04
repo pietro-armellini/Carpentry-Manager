@@ -71,6 +71,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Vue 3
 [Tutorial](https://www.bezkoder.com/vue-3-crud/)
 
+---
+## Migrazione del database: possibile alternativa
+Dalla [documentazione di sequelize](https://sequelize.org/master/manual/migrations.html) si può utilizzare [umzug](https://github.com/sequelize/umzug/tree/v2.x) per migrare il database programmaticamente.
+Basta seguire l'[esempio](https://github.com/sequelize/umzug/tree/v2.x#minimal-example), ed applicarlo ai file nella cartella `models`
 
 ---
 

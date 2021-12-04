@@ -14,14 +14,15 @@
       </div>
 
       <div class="form-group">
-        <label for="commessa">Seleziona commessa</label>
-        <select
-            class="form-control"
-            id="commessa"
-
-            v-model="activity.idCommission"
-            name="commessa"
-        ></select>
+        <label for="commessa">Selezione commesse</label>
+        <select class="form-control"
+                id="commessa"
+                v-model="activity.commissionName"
+                name="commessa"
+        >  <option v-for="option in commissions" :value="option.value" :key="option.value">
+          {{ option.text }}
+        </option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -29,16 +30,17 @@
         <select
             class="form-control"
             id="lavorazione"
-
-            v-model="activity.idManufacturing"
+            v-model="activity.manufacturingName"
             name="lavorazione"
-        ></select>
+        >  <option v-for="option in manufacturing" :value="option.value" :key="option.value">
+            {{ option.text }}
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="tempo">Tempo impiegato (min)</label>
         <input
-
             type="number"
             class="form-control"
             id="tempo"
@@ -73,27 +75,52 @@
 </template>
 
 <script>
+
 import ActivityDataService from "../services/ActivityDataService";
+import CommissionDataService from "../services/CommissionDataService";
+import ManufacturingDataService from "../services/ManufacturingDataService";
 
 export default {
   name: "add-activity",
   data() {
     return {
       activity: {
-        idCommission: -1,
-        idManufacturing: -1,
+        commissionName: null,
+        manufacturingName: null,
         date: "YYYY-MM-DD",
         notes: "",
         time: 0
       },
-      submitted: false
+      submitted: false,
+      commissions: [],
+      manufacturing: []
     };
   },
   methods: {
+    retrieveCommissions() {
+      CommissionDataService.getAll()
+          .then(response => {
+            response.data.forEach(el => this.commissions.push({ text: el.name, value: el.name}));
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+
+    retrieveManufacturing() {
+      ManufacturingDataService.getAll()
+          .then(response => {
+            response.data.forEach(el => this.manufacturing.push({ text: el.name, value: el.name}));
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+
     saveActivity() {
       let data = {
-        //idCommission: this.idCommission,
-        //idManufacturing: this.idManufacturing,
+        commissionName: this.activity.commissionName,
+        manufacturingName: this.activity.manufacturingName,
         date: this.activity.date,
         notes: this.activity.notes,
         time: this.activity.time
@@ -111,9 +138,14 @@ export default {
     },
 
     newActivity() {
+      this.retrieveCommissions();
       this.submitted = false;
       this.activity = {};
     }
+  },
+  mounted() {
+    this.retrieveCommissions();
+    this.retrieveManufacturing();
   }
 };
 </script>

@@ -21,9 +21,9 @@ class ActivityDataService {
         return http.delete(`/activities/${id}`);
     }
 
-    getByIdCommission(idCommission) {
-        if(idCommission===-1) return this.getAll();
-        else return http.get(`/activities/byIdCommission?idCommission=${idCommission}`);
+    getByCommissionName(commissionName) {
+        if(parseInt(commissionName)===-1) return this.getAll();
+        else return http.get(`/activities/byCommissionName?commissionName=${commissionName}`);
     }
 }
 

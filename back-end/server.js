@@ -1,5 +1,4 @@
 const express = require("express");
-//const bodyParser = require("body-parser"); /deprecated
 const cors = require("cors");
 const db = require("./app/models");
 
@@ -7,11 +6,12 @@ const db = require("./app/models");
 //database syncing
 
 //for production
-//db.sequelize.sync();
+//db.sequelize.sync().then(() => db.populate());
 
 //for development
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
+    db.populate().then( () => console.log("Db populated."))
 });
 //----------------------
 
