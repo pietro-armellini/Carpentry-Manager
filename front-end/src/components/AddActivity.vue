@@ -71,6 +71,13 @@
       <h4>You submitted successfully!</h4>
       <button class="btn btn-success" @click="newActivity">Add</button>
     </div>
+
+    <div v-if="errors.length">
+      <b>Impossibile inserire l'attivtà:</b>
+      <ul>
+        <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -87,13 +94,14 @@ export default {
       activity: {
         commissionName: null,
         manufacturingName: null,
-        date: "YYYY-MM-DD",
-        notes: "",
-        time: 0
+        date: "yyyy-MM-dd",
+        time: 0,
+        notes: ""
       },
       submitted: false,
       commissions: [],
-      manufacturing: []
+      manufacturing: [],
+      errors: []
     };
   },
   methods: {
@@ -126,21 +134,32 @@ export default {
         time: this.activity.time
       };
 
-      ActivityDataService.create(data)
-          .then(response => {
-            this.activity.id = response.data.id;
-            console.log(response.data);
-            this.submitted = true;
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      if(this.validateForm()) {
+        ActivityDataService.create(data)
+            .then(response => {
+              this.activity.id = response.data.id;
+              console.log(response.data);
+              this.submitted = true;
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }
     },
 
     newActivity() {
       this.retrieveCommissions();
       this.submitted = false;
       this.activity = {};
+    },
+
+    validateForm(){
+      this.errors = [];
+      if (!this.activity.data) this.errors.push('Data obbligatoria');
+      if (!this.activity.manufacturingName) this.errors.push('Lavorazione obbligatoria');
+      if (!this.activity.commissionName) this.errors.push('Commessa obbligatoria');
+      if (!this.activity.time || isNaN(this.activity.time) || parseInt(this.activity.time)<=0) this.errors.push('Il tempo deve essere maggiore di 0.');
+      return this.errors.length===0;
     }
   },
   mounted() {
