@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Titolo",
-    "description": "Descrizione",
+    "title": "RESTful API gestionale falegnameria",
+    "description": "Questa è la documentazione dell'API RESTful utilizzata nel gestionale \"falegnameria\" sviluppato dal gruppo G06.",
     "version": "1.0",
     "license": {
       "name": "Nome licenza",
@@ -20,16 +20,16 @@
     "/activities": {
       "post": {
         "tags": [
-          "activities"
+          "Chiamate relative alle attività"
         ],
-        "summary": "Sommario",
-        "description": "[Descrizione](https://www.google.com)",
+        "summary": "Inserimento di una nuova attività",
+        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.",
         "operationId": "addActivity",
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "Description",
+            "description": "",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Activity"
@@ -40,23 +40,23 @@
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       },
       "get": {
         "tags": [
-          "activities"
+          "Chiamate relative alle attività"
         ],
-        "summary": "Sommario",
-        "description": "DescriogetActivities",
+        "summary": "Recupero dati relativi a tutte le attività",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi a tutte le attività inserite.",
         "operationId": "getActivities",
         "responses": {
           "400": {
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }
@@ -64,10 +64,10 @@
     "/activities/{activityId}": {
       "get": {
         "tags": [
-          "activities"
+          "Chiamate relative alle attività"
         ],
-        "summary": "Sommario",
-        "description": "Descrizione: getActivityById",
+        "summary": "Recupero informazioni relative ad una data attività dato il suo Id",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività.",
         "operationId": "getActivityById",
         "parameters": [
           {
@@ -84,16 +84,16 @@
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       },
       "put": {
         "tags": [
-          "activities"
+          "Chiamate relative alle attività"
         ],
-        "summary": "Sommario",
-        "description": "Descrizione: updateActivityById",
+        "summary": "Aggiornamento dati attività",
+        "description": "Questa è una chiamata di tipo PUT utilizzata per aggiornare i dati relativi ad un'attività.",
         "operationId": "updateActivityById",
         "parameters": [
           {
@@ -118,10 +118,10 @@
       },
       "delete":  {
         "tags": [
-          "activities"
+          "Chiamate relative alle attività"
         ],
-        "summary": "Sommario",
-        "description": "Descrizione: deleteActivityById",
+        "summary": "Eliminazione di un'attività",
+        "description": "Questa è una chiamata di tipo DELETE utilizzata per eliminare un'attività.",
         "operationId": "deleteActivityById",
         "parameters": [
           {
@@ -138,7 +138,7 @@
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }
@@ -146,10 +146,10 @@
     "/activities/byCommissionName": {
       "get": {
         "tags": [
-          "activities"
+          "Chiamate relative alle attività"
         ],
-        "summary": "Sommario",
-        "description": "Descrizione: getActivityByCommissionName",
+        "summary": "Recupero informazioni relative ad un'attività data una commissione",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività data una commissione.",
         "operationId": "getActivityByCommissionName",
         "parameters": [
           {
@@ -165,7 +165,7 @@
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
             }
           }
         }
@@ -173,17 +173,17 @@
     "/commissions": {
       "get": {
         "tags": [
-          "commissions"
+          "Chiamate relative alle commissioni"
         ],
-        "summary": "Sommario",
-        "description": "Descrizione: getCommissions",
+        "summary": "Recupero di tutte le commesse",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi a tutte le commesse .",
         "operationId": "getCommissions",
         "responses": {
           "400": {
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }
@@ -191,17 +191,17 @@
     "/manufacturing": {
       "get": {
         "tags": [
-          "manufacturing"
+          "Chiamate relative alle lavorazioni"
         ],
-        "summary": "Sommario",
-        "description": "Descrizione: getManufacturing",
+        "summary": "Recupero di tutte le lavorazioni",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi a tutte le lavorazioni.",
         "operationId": "getManufacturing",
         "responses": {
           "400": {
             "description": "Error"
           },
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }
