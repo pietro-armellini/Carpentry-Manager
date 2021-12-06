@@ -6,9 +6,11 @@
 # Node js modules
 node_modules/
 
+# Vue build
+dist/
+
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*

@@ -33,11 +33,15 @@ app.use(express.urlencoded({ extended: true }));
 require("./app/routes/activity.routes")(app);
 require("./app/routes/commission.routes")(app);
 require("./app/routes/manufacturing.routes")(app);
+require('./app/docs')(app);
 
 // simple route
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to G06 middleware." });
-});
+app.get("/", (req, res) => res.redirect('/api-docs'));
+app.get("/api/docs", (req, res) => res.redirect('/api-docs'));
+app.get("/api", (req, res) =>
+    res.json({ message: "Welcome to G06 API." })
+);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

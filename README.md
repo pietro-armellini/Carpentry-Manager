@@ -13,16 +13,18 @@ Aver già installato:
 - [MySQL server](https://dev.mysql.com/downloads/mysql/)
 - [Vue CLI](https://cli.vuejs.org/guide/installation.html) (Facoltativo)
 
+## Utilizzo
 
-### Utilizzo back-end
+### back-end
+Modificare il file `back-end/app/config/db.config.js` con i propri dati
 ```shell
 cd back-end/  
 npm install 
-node server.js 
+npm start
 ```
 Server in esecuzione all'indirizzo `http://localhost:8080/` 
 
-### Utilizzo front-end
+### front-end
 ```shell
 cd front-end/
 npm install 
@@ -31,24 +33,13 @@ npm run serve
 
 Server in esecuzione all'indirizzo `http://localhost:8081/`
 
+---
 
-#### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## ToDo
 
-#### Compiles and minifies for production
-```
-npm run build
-```
-
-#### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [ ] Completare documentazione
+- [ ] Design front-end
+- [ ] Migiorare codici restituiti dalle risposte delle API
 
 ---
 

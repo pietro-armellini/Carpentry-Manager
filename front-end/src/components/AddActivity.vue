@@ -155,7 +155,7 @@ export default {
 
     validateForm(){
       this.errors = [];
-      if (!this.activity.data) this.errors.push('Data obbligatoria');
+      if (!this.activity.date) this.errors.push('Data obbligatoria');
       if (!this.activity.manufacturingName) this.errors.push('Lavorazione obbligatoria');
       if (!this.activity.commissionName) this.errors.push('Commessa obbligatoria');
       if (!this.activity.time || isNaN(this.activity.time) || parseInt(this.activity.time)<=0) this.errors.push('Il tempo deve essere maggiore di 0.');
