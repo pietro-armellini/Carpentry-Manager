@@ -23,7 +23,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Inserimento di una nuova attività",
-        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.",
+        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.\n\nRichiede che vengano passati i seguenti parametri: \n- il nome della commessa di tipo string \n- il nome della lavorazione di tipo string \n- la data di tipo date \n- il tempo impiegato di tipo intero \n- eventuali note di tipo string\n\n Il nome della commessa (commissionName) deve fare parte dell'insieme delle commesse presenti nel database, ricavaibili tramite la chiamata GET \"/commissions\".\n Il nome della lavorazione (manufacturingName) deve fare parte dell'insieme delle lavorazioni presenti nel database, ricavaibili tramite la chiamata GET \"/manufacturing\".",
         "operationId": "addActivity",
         "parameters": [
           {
@@ -67,7 +67,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Recupero informazioni relative ad una data attività dato il suo Id",
-        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività.",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività.\nPrevede il passaggio dell'Id dell'attività desiderata.",
         "operationId": "getActivityById",
         "parameters": [
           {
@@ -93,7 +93,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Aggiornamento dati attività",
-        "description": "Questa è una chiamata di tipo PUT utilizzata per aggiornare i dati relativi ad un'attività.",
+        "description": "Questa è una chiamata di tipo PUT utilizzata per aggiornare i dati relativi ad un'attività.\n\nRichiede che vengano passati i seguenti parametri:\n- Id dell'attività desiderata\n- il nuovo valore del campo \"note\" che l'attività deve assumere.",
         "operationId": "updateActivityById",
         "parameters": [
           {
@@ -121,7 +121,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Eliminazione di un'attività",
-        "description": "Questa è una chiamata di tipo DELETE utilizzata per eliminare un'attività.",
+        "description": "Questa è una chiamata di tipo DELETE utilizzata per eliminare un'attività.\nPrevede il passaggio dell'Id dell'attività da eliminare.",
         "operationId": "deleteActivityById",
         "parameters": [
           {
@@ -149,7 +149,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Recupero informazioni relative ad un'attività data una commissione",
-        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività data una commissione.",
+        "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività data una commessa.\nPrevede il passaggio del nome della commessa desiderata.",
         "operationId": "getActivityByCommissionName",
         "parameters": [
           {
