@@ -27,8 +27,9 @@ db.activity.belongsTo(db.commission, {foreignKey: {name: 'commissionName', allow
 db.activity.belongsTo(db.manufacturing, {foreignKey: {name: 'manufacturingName', allowNull: false }});
 
 db.populate = async () => {
-    await require("../seeds/commissions.seed").populate(db.commission);
+    await require("../seeds/commission.seed").populate(db.commission);
     await require("../seeds/manufacturing.seed").populate(db.manufacturing);
+    await require("../seeds/activity.seed").populate(db.activity);
 }
 
 module.exports = db;
