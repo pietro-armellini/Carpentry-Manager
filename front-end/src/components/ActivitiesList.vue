@@ -39,7 +39,7 @@
             :key="index"
             @click="setActiveActivity(activity, index)"
         >
-          {{ activity.id }}
+          {{ "#"+activity.id + " - " + activity.manufacturingName }}
         </li>
       </ul>
 
@@ -48,13 +48,13 @@
       <div v-if="currentActivity">
         <h4>Attività</h4>
         <div>
-          <label><strong>Id:</strong></label> {{ currentActivity.id }}
+          <label><strong>Id:</strong></label> {{ "#"+currentActivity.id }}
         </div>
         <div>
           <label><strong>Data:</strong></label> {{ currentActivity.date}}
         </div>
         <div>
-          <label><strong>Tempo:</strong></label> {{ currentActivity.time}}
+          <label><strong>Tempo:</strong></label> {{ currentActivity.time + " minuti"}}
         </div>
         <div>
           <label><strong>Commessa:</strong></label> {{ currentActivity.commissionName}}
@@ -66,11 +66,16 @@
           <label><strong>Notes:</strong></label> {{ currentActivity.notes }}
         </div>
 
-        <router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning">Edit</router-link>
+        <span style="padding:5px"><router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning text-white">Modifica<img src="../assets/edit_icon.png"></router-link></span>
+        <span style="padding:5px" class="badge badge-danger text-white"
+            @click="deleteActivity"
+        >
+          Rimuovi<img src="../assets/delete_icon.png">
+        </span>
       </div>
       <div v-else>
         <br />
-        <p>Please click on an Activity...</p>
+        <p>Premi su un attività per visualizzarne i dettagli</p>
       </div>
     </div>
   </div>
@@ -123,6 +128,17 @@ export default {
     setActiveActivity(activity, index) {
       this.currentActivity = activity;
       this.currentIndex = activity ? index : -1;
+    },
+    deleteActivity() {
+      ActivityDataService.delete(this.currentActivity.id)
+          .then(response => {
+            console.log(response.data);
+            this.$router.push({ name: "activities" });
+            this.refreshList();
+          })
+          .catch(e => {
+            console.log(e);
+          });
     },
 
     searchByCommissionName() {

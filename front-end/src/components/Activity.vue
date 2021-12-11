@@ -45,17 +45,11 @@
       </div>
     </form>
 
-    <button class="badge badge-danger mr-2"
-            @click="deleteActivity"
-    >
-      Delete
-    </button>
-
-    <button type="submit" class="badge badge-success"
+    <span style="padding:5px; margin:10px; margin-left:0px" type="submit" class="badge badge-success text-white"
             @click="updateActivity"
     >
-      Update
-    </button>
+      Salva<img src="../assets/save_icon.png">
+    </span>
     <p>{{ message }}</p>
   </div>
 
@@ -92,18 +86,7 @@ export default {
       ActivityDataService.update(this.currentActivity.id, this.currentActivity)
           .then(response => {
             console.log(response.data);
-            this.message = 'The activity was updated successfully!';
-          })
-          .catch(e => {
-            console.log(e);
-          });
-    },
-
-    deleteActivity() {
-      ActivityDataService.delete(this.currentActivity.id)
-          .then(response => {
-            console.log(response.data);
-            this.$router.push({ name: "activities" });
+            this.message = 'L\'attività è stata modificata con successo';
           })
           .catch(e => {
             console.log(e);

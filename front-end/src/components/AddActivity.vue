@@ -68,8 +68,8 @@
     </div>
 
     <div v-else>
-      <h4>You submitted successfully!</h4>
-      <button class="btn btn-success" @click="newActivity">Add</button>
+      <h4>Attività inserita</h4>
+      <button class="btn btn-success" @click="newActivity">Aggiungine un'altra</button>
     </div>
 
     <div v-if="errors.length">

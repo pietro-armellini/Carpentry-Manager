@@ -23,7 +23,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Inserimento di una nuova attività",
-        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.\n\nRichiede che vengano passati i seguenti parametri: \n- il nome della commessa di tipo string \n- il nome della lavorazione di tipo string \n- la data di tipo date \n- il tempo impiegato di tipo intero \n- eventuali note di tipo string\n\n Il nome della commessa (commissionName) deve fare parte dell'insieme delle commesse presenti nel database, ricavaibili tramite la chiamata GET \"/commissions\".\n Il nome della lavorazione (manufacturingName) deve fare parte dell'insieme delle lavorazioni presenti nel database, ricavaibili tramite la chiamata GET \"/manufacturing\".",
+        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.\n\nRichiede che vengano passati i seguenti parametri: \n- il nome della commessa di tipo string* \n- il nome della lavorazione di tipo string* \n- la data di tipo date \n- il tempo impiegato di tipo intero \n- eventuali note di tipo string\n\n *Il nome della commessa (commissionName) deve fare parte dell'insieme delle commesse presenti nel database, ricavaibili tramite la chiamata GET \"/commissions\".\n *Il nome della lavorazione (manufacturingName) deve fare parte dell'insieme delle lavorazioni presenti nel database, ricavaibili tramite la chiamata GET \"/manufacturing\".",
         "operationId": "addActivity",
         "parameters": [
           {
@@ -66,14 +66,14 @@
         "tags": [
           "Chiamate relative alle attività"
         ],
-        "summary": "Recupero informazioni relative ad una data attività dato il suo Id",
+        "summary": "Recupero informazioni relative ad una data attività",
         "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi ad un'attività.\nPrevede il passaggio dell'Id dell'attività desiderata.",
         "operationId": "getActivityById",
         "parameters": [
           {
             "name": "activityId",
             "in": "path",
-            "description": "Descrizione",
+            "description": "Id dell'attività da recuperare",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -99,7 +99,7 @@
           {
             "name": "activityId",
             "in": "path",
-            "description": "Descrizione",
+            "description": "Id dell'attività da aggiornare",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -127,7 +127,7 @@
           {
             "name": "activityId",
             "in": "path",
-            "description": "Descrizione",
+            "description": "Id dell'attività da eliminare",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -155,7 +155,7 @@
           {
             "name": "commissionName",
             "in": "query",
-            "description": "Descrizione",
+            "description": "Nome della commessa desiderata",
             "required": true,
             "type": "string"
           }

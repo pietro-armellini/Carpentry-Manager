@@ -5,7 +5,7 @@ module.exports =  {
                 commissionName: 'Panchine parco Sant\'Anna',
                 manufacturingName: 'Verniciatura',
                 date: '2021-12-01',
-                notes: 'Le panchine sono state verniciate in impregnante bianco',
+                notes: 'Le panchine sono state verniciate con impregnante bianco',
                 time: 120
             },
             {
