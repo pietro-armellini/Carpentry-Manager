@@ -37,9 +37,10 @@ Server in esecuzione all'indirizzo `http://localhost:8081/`
 
 ## ToDo
 
-- [ ] Completare documentazione
-- [ ] Design front-end
-- [ ] Migiorare codici restituiti dalle risposte delle API
+- Completare documentazione
+- Migiorare codici restituiti dalle risposte delle API
+- Testing
+- Completare Readme
 
 ---
 

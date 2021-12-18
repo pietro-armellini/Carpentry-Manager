@@ -44,12 +44,12 @@
         />
       </div>
     </form>
-
-    <span style="padding:5px; margin:10px; margin-left:0px" type="submit" class="badge badge-success text-white"
-            @click="updateActivity"
-    >
-      Salva<img src="../assets/save_icon.png">
-    </span>
+    <div style="display:table; margin:0 auto;">
+      <span style="padding:5px; background-color:#5C7563;" type="submit" class="badge badge-success text-white" @click="updateActivity">
+        Salva<img src="../assets/save_icon.png">
+      </span>
+    </div>
+    <br>
     <p>{{ message }}</p>
   </div>
 

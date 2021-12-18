@@ -1,33 +1,21 @@
 <template>
   <div class="list row">
     <div class="col-md-8">
+      <h4 for="commessa">Filtra per commessa</h4>
       <div class="input-group mb-3">
-        <div class="form-group">
-          <label for="commessa">Filtra per commessa</label>
+        <div class="input-group-append">
           <select class="form-control"
                   id="commessa"
                   v-model="commissionName"
                   name="commessa"
                   @change=searchByCommissionName
           >
-            <option selected value="-1">Tutte le commesse</option>
+            <option selected  value="-1">Tutte le commesse</option>
             <option v-for="option in commissions" :value="option.value" :key="option.value">
               {{ option.text }}
             </option>
           </select>
         </div>
-        <!--
-        <input type="text" class="form-control" placeholder="Search by commissionName"
-               v-model="activity"/>
-
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
-                  @click="searchByCommissionName"
-          >
-            Search
-          </button>
-        </div>
-        -->
       </div>
     </div>
     <div class="col-md-6">
@@ -43,43 +31,55 @@
         </li>
       </ul>
 
+      <br>
     </div>
     <div class="col-md-6">
       <div v-if="currentActivity">
         <h4>Attività</h4>
         <div>
-          <label><strong>Id:</strong></label> {{ "#"+currentActivity.id }}
+          <label><strong>Id:</strong> {{ "#"+currentActivity.id }}</label>
         </div>
         <div>
-          <label><strong>Data:</strong></label> {{ currentActivity.date}}
+          <label><strong>Data:</strong> {{ currentActivity.date}}</label>
         </div>
         <div>
-          <label><strong>Tempo:</strong></label> {{ currentActivity.time + " minuti"}}
+          <label><strong>Tempo:</strong> {{ currentActivity.time + " minuti"}}</label>
         </div>
         <div>
-          <label><strong>Commessa:</strong></label> {{ currentActivity.commissionName}}
+          <label><strong>Commessa:</strong> {{ currentActivity.commissionName}}</label>
         </div>
         <div>
-          <label><strong>Lavorazione:</strong></label> {{ currentActivity.manufacturingName}}
+          <label><strong>Lavorazione:</strong> {{ currentActivity.manufacturingName}}</label>
         </div>
         <div>
-          <label><strong>Notes:</strong></label> {{ currentActivity.notes }}
+          <label><strong>Note:</strong> {{ currentActivity.notes }}</label>
         </div>
+        <br>
 
-        <span style="padding:5px"><router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning text-white">Modifica<img src="../assets/edit_icon.png"></router-link></span>
-        <span style="padding:5px" class="badge badge-danger text-white"
-            @click="deleteActivity"
-        >
-          Rimuovi<img src="../assets/delete_icon.png">
-        </span>
+        <div style="display:table; margin:0 auto;">
+          <span  style="padding:30px;"><router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning text-white" style="padding:5px; background-color:#9C9C5C;">
+            Modifica<img src="../assets/edit_icon.png"></router-link></span>
+          <span class="badge badge-danger text-white" @click="deleteActivity" style="padding:5px; background-color:#7F5353;">
+            Rimuovi<img src="../assets/delete_icon.png">
+          </span>
+        </div>
       </div>
       <div v-else>
         <br />
         <p>Premi su un attività per visualizzarne i dettagli</p>
       </div>
+      <br>
     </div>
   </div>
 </template>
+
+<style type="text/css">
+  li.active {
+    color: #ECEEDB !important;
+    background-color: #656659 !important;
+    border-color: white !important;
+  }
+</style>
 
 <script>
 import ActivityDataService from "../services/ActivityDataService";

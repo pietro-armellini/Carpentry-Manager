@@ -63,16 +63,20 @@
         />
       </div>
 
-
-      <button @click="saveActivity" class="btn btn-success">Aggiungi</button>
+      <div style="display:table; margin:0 auto;">
+        <button @click="saveActivity" class="btn btn-success" style="padding:5px; background-color:#5C7563; border-color: white !important;">
+          Aggiungi</button>
+      </div>
     </div>
 
-    <div v-else>
+    <div v-else style="display:table; margin:0 auto;">
       <h4>Attività inserita</h4>
-      <button class="btn btn-success" @click="newActivity">Aggiungine un'altra</button>
+      <button class="btn btn-success" @click="newActivity" style="padding:5px; background-color:#5C7563; border-color: white !important;">
+        Aggiungine un'altra</button>
     </div>
 
     <div v-if="errors.length">
+      <br>
       <b>Impossibile inserire l'attivtà:</b>
       <ul>
         <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
@@ -155,7 +159,7 @@ export default {
 
     validateForm(){
       this.errors = [];
-      if (!this.activity.date) this.errors.push('Data obbligatoria');
+      if (!this.activity.date || isNaN(Date.parse(this.activity.date))) this.errors.push('Data obbligatoria');
       if (!this.activity.manufacturingName) this.errors.push('Lavorazione obbligatoria');
       if (!this.activity.commissionName) this.errors.push('Commessa obbligatoria');
       if (!this.activity.time || isNaN(this.activity.time) || parseInt(this.activity.time)<=0) this.errors.push('Il tempo deve essere maggiore di 0.');

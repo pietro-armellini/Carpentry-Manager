@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">G06</router-link>
+  <main>
+    <nav class="navbar navbar-expand navbar-dark" style="background-color: #53534c;">
+      <router-link to="/" class="navbar-brand">Gestionale falegnameria</router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link to="/activities" class="nav-link">Lista attività</router-link>
@@ -12,11 +12,35 @@
       </div>
     </nav>
 
-    <div class="container mt-3">
+    <div class="container mt-3" >
       <router-view />
     </div>
-  </div>
+  </main>
+
+  <footer class="text-center">
+      <img
+          src="./assets/logo.png"
+          style="max-width: 12.5%; margin-left: auto; margin-right: auto; display: block;" />
+    <section class="mb-4">
+      <p>Realizzato dal gruppo G06</p>
+    </section>
+  </footer>
 </template>
+
+<style type="text/css">
+  body {
+    background: #ECEEDB !important;  /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+  }
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  main {
+    flex-grow: 1 !important;
+  }
+  p, h4, label, li, b, select {color: #53534c !important;}
+</style>
 
 <script>
 export default {
