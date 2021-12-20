@@ -66,7 +66,7 @@
       </div>
       <div v-else>
         <br />
-        <p>Premi su un attività per visualizzarne i dettagli</p>
+        <p>Premi su un'attività per visualizzarne i dettagli</p>
       </div>
       <br>
     </div>

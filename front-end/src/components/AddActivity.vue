@@ -77,7 +77,7 @@
 
     <div v-if="errors.length">
       <br>
-      <b>Impossibile inserire l'attivtà:</b>
+      <b>Impossibile inserire l'attività:</b>
       <ul>
         <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
       </ul>
