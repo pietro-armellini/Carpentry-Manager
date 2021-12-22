@@ -1,13 +1,22 @@
 {
   "dependencies": {
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.12.0-alpha.1",
     "swagger-ui-express": "^4.2.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
+    "pretest": "cd db && cross-env NODE_ENV=test npm run db:reset",
+    "db:reset": "cd db && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.4.5",
+    "sequelize-cli": "^6.3.0",
+    "supertest": "^6.1.6"
   }
 }

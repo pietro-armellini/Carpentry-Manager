@@ -1,9 +1,8 @@
-const db = require("../models");
-const Manufacturing = db.manufacturing;
+const {manufacturings} = require('../../db/models');
 
 // Create and Save a new manufacturing
 exports.findAll = (req, res) => {
-    Manufacturing.findAll()
+    manufacturings.findAll()
         .then(data => {
             res.send(data);
         })

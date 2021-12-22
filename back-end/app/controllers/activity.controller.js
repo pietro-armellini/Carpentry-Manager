@@ -1,15 +1,15 @@
 //Adds on: pagination -> tutorial: https://www.bezkoder.com/node-js-sequelize-pagination-mysql/
 
-const db = require("../models");
-const Activity = db.activity;
+const {activities, commissions, manufacturings} = require('../../db/models');
 
 // Create and Save a new Activity
 exports.create = async (req, res) => {
 
-    // Validate request
+    // Request not empty
     if (!(req.body.commissionName &&
         req.body.manufacturingName &&
-        req.body.date && req.body.time)) {
+        req.body.date && req.body.time &&
+        typeof req.body.notes === 'string')) {
         res.status(400).send({
             message: `Content can not be empty! req: {
              commissionName: ${req.body.commissionName},
@@ -21,29 +21,56 @@ exports.create = async (req, res) => {
         return;
     }
 
-    const activity = {
-        commissionName: req.body.commissionName,
-        manufacturingName: req.body.manufacturingName,
-        date: req.body.date,
-        notes: req.body.notes,
-        time: req.body.time
-    };
+    // Validate request
+    if (isNaN(Date.parse(req.body.date))
+        || isNaN(req.body.time)
+        || parseInt(req.body.time)<=0){
+        res.status(400).send({
+            message: "Content with wrong value: date must be a valid date and time an integer greater than 0"
+        });
+        return;
+    }
 
-    Activity.create(activity)
-        .then(data =>
-        res.send(data)
-        ).catch(err =>
+    // Check if commissionName and manufacturingName exist
+    let foundCommission = null, foundManufacture = null;
+    try {
+        foundCommission = await commissions.findByPk(req.body.commissionName);
+        foundManufacture = await manufacturings.findByPk(req.body.manufacturingName);
+    } catch(err) {
         res.status(500).send({
-            message:
-                err.message || "Some error occurred while creating the Activity."
-        })
-    )
+            message: err.message || "Some error occurred while retrieving commissions or manufactures."
+        });
+        return;
+    }
+    if(!foundCommission || !foundManufacture){
+        res.status(404).send({
+            message: `Cannot find Commission with name=${req.body.commissionName} or Manufacture with name=${req.body.manufacturingName}.`
+        });
+    } else {
+        // creating the activity
+        const newActivity = {
+            commissionName: req.body.commissionName,
+            manufacturingName: req.body.manufacturingName,
+            date: req.body.date,
+            notes: req.body.notes,
+            time: req.body.time
+        };
+
+        try {
+            const data = await activities.create(newActivity);
+            res.status(201).send(data);
+        } catch(err){
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the Activity."
+            });
+        }
+    }
 };
 
 
 // Retrieve all Activities from the database.
 exports.findAll = (req, res) => {
-    Activity.findAll()
+    activities.findAll()
         .then(data => {
             res.send(data);
         })
@@ -60,7 +87,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Activity.findByPk(id)
+    activities.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data);
@@ -82,12 +109,19 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
+    if(typeof req.body.notes !== 'string') {
+        res.status(400).send({
+            message: "Empty notes field"
+        })
+        return;
+    }
+
     // Updated Activity
-    const activity = {
+    const updatedActivity = {
         notes: req.body.notes
     };
 
-    Activity.update(activity, {
+    activities.update(updatedActivity, {
         where: { id: id }
     })
         .then(num => {
@@ -96,7 +130,7 @@ exports.update = (req, res) => {
                     message: "Activity was updated successfully."
                 });
             } else {
-                res.send({
+                res.status(404).send({
                     message: `Cannot update Activity with id=${id}. Maybe Activity was not found or req.body is empty!`
                 });
             }
@@ -113,7 +147,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Activity.destroy({
+    activities.destroy({
         where: { id: id }
     })
         .then(num => {
@@ -122,7 +156,7 @@ exports.delete = (req, res) => {
                     message: "Activity was deleted successfully!"
                 });
             } else {
-                res.send({
+                res.status(404).send({
                     message: `Cannot delete Activity with id=${id}. Maybe Activity was not found!`
                 });
             }
@@ -136,19 +170,37 @@ exports.delete = (req, res) => {
 
 
 // Find all Activities from one commission
-exports.findAllFromCommission = (req, res) => {
-    const commissionName = req.query.commissionName;
-
-    console.log(commissionName);
-
-    Activity.findAll({ where: { commissionName: commissionName } })
-        .then(data => {
-            res.send(data);
+exports.findAllFromCommission = async (req, res) => {
+    if(!req.query.commissionName) {
+        res.status(400).send({
+            message: "Empty commission name"
         })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving activities."
-            });
+        return;
+    }
+
+    const commissionName = req.query.commissionName;
+    let found = null;
+    try {
+        found = await commissions.findByPk(commissionName);
+    } catch(err) {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving manufactures."
         });
+        return;
+    }
+
+    if(!found){
+        res.status(404).send({
+            message: `Cannot find Commission with name=${commissionName}.`
+        });
+    } else {
+        try {
+            const data = await activities.findAll({ where: { commissionName: commissionName } });
+            res.send(data);
+        } catch (err) {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving activities."
+            });
+        }
+    }
 };

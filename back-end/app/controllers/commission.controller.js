@@ -1,9 +1,8 @@
-const db = require("../models");
-const Commission = db.commission;
+const {commissions} = require('../../db/models');
 
 // Retrieve all commissions from the database.
 exports.findAll = (req, res) => {
-    Commission.findAll()
+    commissions.findAll()
         .then(data => {
             res.send(data);
         })

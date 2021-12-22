@@ -59,7 +59,7 @@
         <div style="display:table; margin:0 auto;">
           <span  style="padding:30px;"><router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning text-white" style="padding:5px; background-color:#9C9C5C;">
             Modifica<img src="../assets/edit_icon.png"></router-link></span>
-          <span class="badge badge-danger text-white" @click="deleteActivity" style="padding:5px; background-color:#7F5353;">
+          <span style="padding:5px; background-color:#7F5353;" type="submit" class="badge badge-danger text-white" @click="deleteActivity">
             Rimuovi<img src="../assets/delete_icon.png">
           </span>
         </div>
