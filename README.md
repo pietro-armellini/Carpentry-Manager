@@ -1,10 +1,20 @@
 # Progetto di ingegneria del software
 
+<p align="center">
+  <img src="./front-end/src/assets/logo.png" width="50%" alt="logo"/>
+</p>
+
+Descrizione progetto
+
+![gif architettura](./path)
+
 ## Prerequisiti
 
 Aver già installato:
 - [NodeJs & npm](https://nodejs.org/en/download/)
 - [MySQL server](https://dev.mysql.com/downloads/mysql/)
+
+---
 
 ## Utilizzo
 
@@ -16,9 +26,8 @@ npm ci
 npm run db:reset
 npm start
 ```
-Server in esecuzione all'indirizzo `http://localhost:8080/`
+Documentazione delle API disponibile all'indirizzo `http://localhost:8080/api-docs/`
 
-*Il comando `npm run db:reset` si utilizza quando si vuole portare il database allo stato iniziale
 #### testing
 ```shell
 npm test
@@ -31,36 +40,4 @@ npm run serve
 ```
 
 Server in esecuzione all'indirizzo `http://localhost:8081/`
-
----
-
-## ToDo
-
-- Completare documentazione
-- Completare Readme
-- Refactoring: 
-    - Sostituire manufacturing con manufacture
-    - Indentare codice con clang-format
-    - Sistemare nomi tabelle e cercare convenzioni
----
-
-## Tutorial
-
-### Configurazione generale
-[Tutorial](https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/#Configure_MySQL_database_038_Sequelize)
-
----
-
-## Tutorials Back-end
-
-### Invio richieste POST alle API
-[Tutorial](https://www.bezkoder.com/node-js-express-sequelize-mysql/)
-
----
-
-## Tutorials front-end
-
-### Vue 3
-[Tutorial](https://www.bezkoder.com/vue-3-crud/)
-
 

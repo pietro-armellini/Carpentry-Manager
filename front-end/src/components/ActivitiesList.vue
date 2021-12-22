@@ -27,7 +27,7 @@
             :key="index"
             @click="setActiveActivity(activity, index)"
         >
-          {{ "#"+activity.id + " - " + activity.manufacturingName }}
+          {{ "#"+activity.id + " - " + activity.manufactureName }}
         </li>
       </ul>
 
@@ -49,7 +49,7 @@
           <label><strong>Commessa:</strong> {{ currentActivity.commissionName}}</label>
         </div>
         <div>
-          <label><strong>Lavorazione:</strong> {{ currentActivity.manufacturingName}}</label>
+          <label><strong>Lavorazione:</strong> {{ currentActivity.manufactureName}}</label>
         </div>
         <div>
           <label><strong>Note:</strong> {{ currentActivity.notes }}</label>

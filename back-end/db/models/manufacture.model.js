@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const commissions = sequelize.define(
-      'commissions',
+  const manufactures = sequelize.define(
+      'manufactures',
       {name: {type: DataTypes.STRING, primaryKey: true, allowNull: false}},
       {timestamps: false});
-  commissions.associate = function(models) {
+  manufactures.associate = function(models) {
     // associations can be defined here
-    commissions.hasMany(models.activities, {foreignKey: 'commissionName'})
+    manufactures.hasMany(models.activities, {foreignKey: 'manufactureName'})
   };
-  return commissions;
+  return manufactures;
 };

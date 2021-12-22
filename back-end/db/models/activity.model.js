@@ -13,25 +13,23 @@ module.exports = (sequelize, DataTypes) => {
         as: 'commissionName',
       }
     },
-    manufacturingName: {
+    manufactureName: {
       type: DataTypes.STRING,
       references: {
-        model: 'manufacturings',
+        model: 'manufactures',
         key: 'name',
-        as: 'manufacturingName',
+        as: 'manufactureName',
       }
     }
   }, {timestamps: false});
-  activities.associate = function (models) {
+  activities.associate = function(models) {
     // associations can be defined here
-    activities.belongsTo(models.commissions, {
-      foreignKey: 'commissionName',
-      onDelete: 'CASCADE'
-    });
-    activities.belongsTo(models.manufacturings, {
-      foreignKey: 'manufacturingName',
-      onDelete: 'CASCADE'
-    })
+    activities.belongsTo(
+        models.commissions,
+        {foreignKey: 'commissionName', onDelete: 'CASCADE'});
+    activities.belongsTo(
+        models.manufactures,
+        {foreignKey: 'manufactureName', onDelete: 'CASCADE'})
   };
   return activities;
 };

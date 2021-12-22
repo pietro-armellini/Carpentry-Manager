@@ -1,10 +1,10 @@
 module.exports = app => {
-    const commissions = require("../controllers/commission.controller.js");
+  const commissions = require('../controllers/commission.controller.js');
 
-    let router = require("express").Router();
+  let router = require('express').Router();
 
-    // Retrieve all Commissions
-    router.get("/", commissions.findAll);
+  // Retrieve all Commissions
+  router.get('/', commissions.findAll);
 
-    app.use('/api/commissions', router);
+  app.use('/api/commissions', router);
 };

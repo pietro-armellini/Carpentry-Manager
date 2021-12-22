@@ -17,10 +17,10 @@
         />
       </div>
       <div class="form-group">
-        <label for="manufacturingName">manufacturingName</label>
-        <input type="text" class="form-control" id="manufacturingName"
+        <label for="manufactureName">manufactureName</label>
+        <input type="text" class="form-control" id="manufactureName"
                readonly
-               v-model="currentActivity.manufacturingName"
+               v-model="currentActivity.manufactureName"
         />
       </div>
       <div class="form-group">

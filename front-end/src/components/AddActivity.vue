@@ -30,9 +30,9 @@
         <select
             class="form-control"
             id="lavorazione"
-            v-model="activity.manufacturingName"
+            v-model="activity.manufactureName"
             name="lavorazione"
-        >  <option v-for="option in manufacturing" :value="option.value" :key="option.value">
+        >  <option v-for="option in manufacture" :value="option.value" :key="option.value">
             {{ option.text }}
           </option>
         </select>
@@ -89,7 +89,7 @@
 
 import ActivityDataService from "../services/ActivityDataService";
 import CommissionDataService from "../services/CommissionDataService";
-import ManufacturingDataService from "../services/ManufacturingDataService";
+import manufactureDataService from "../services/ManufactureDataService";
 
 export default {
   name: "add-activity",
@@ -97,14 +97,14 @@ export default {
     return {
       activity: {
         commissionName: null,
-        manufacturingName: null,
+        manufactureName: null,
         date: "yyyy-MM-dd",
         time: 0,
         notes: ""
       },
       submitted: false,
       commissions: [],
-      manufacturing: [],
+      manufacture: [],
       errors: []
     };
   },
@@ -119,10 +119,10 @@ export default {
           });
     },
 
-    retrieveManufacturing() {
-      ManufacturingDataService.getAll()
+    retrieveManufacture() {
+      manufactureDataService.getAll()
           .then(response => {
-            response.data.forEach(el => this.manufacturing.push({ text: el.name, value: el.name}));
+            response.data.forEach(el => this.manufacture.push({ text: el.name, value: el.name}));
           })
           .catch(e => {
             console.log(e);
@@ -132,7 +132,7 @@ export default {
     saveActivity() {
       let data = {
         commissionName: this.activity.commissionName,
-        manufacturingName: this.activity.manufacturingName,
+        manufactureName: this.activity.manufactureName,
         date: this.activity.date,
         notes: this.activity.notes,
         time: this.activity.time
@@ -160,7 +160,7 @@ export default {
     validateForm(){
       this.errors = [];
       if (!this.activity.date || isNaN(Date.parse(this.activity.date))) this.errors.push('Data obbligatoria');
-      if (!this.activity.manufacturingName) this.errors.push('Lavorazione obbligatoria');
+      if (!this.activity.manufactureName) this.errors.push('Lavorazione obbligatoria');
       if (!this.activity.commissionName) this.errors.push('Commessa obbligatoria');
       if (!this.activity.time || isNaN(this.activity.time) || parseInt(this.activity.time)<=0) this.errors.push('Il tempo deve essere maggiore di 0.');
       return this.errors.length===0;
@@ -168,7 +168,7 @@ export default {
   },
   mounted() {
     this.retrieveCommissions();
-    this.retrieveManufacturing();
+    this.retrieveManufacture();
   }
 };
 </script>

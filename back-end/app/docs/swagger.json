@@ -3,11 +3,7 @@
   "info": {
     "title": "RESTful API gestionale falegnameria",
     "description": "Questa è la documentazione dell'API RESTful utilizzata nel gestionale \"falegnameria\" sviluppato dal gruppo G06.",
-    "version": "1.0",
-    "license": {
-      "name": "Nome licenza",
-      "url": "https://www.google.com"
-    }
+    "version": "1.0"
   },
   "host": "localhost:8080",
   "basePath": "/api",
@@ -23,7 +19,7 @@
           "Chiamate relative alle attività"
         ],
         "summary": "Inserimento di una nuova attività",
-        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.\n\nRichiede che vengano passati i seguenti parametri: \n- il nome della commessa di tipo string* \n- il nome della lavorazione di tipo string* \n- la data di tipo date \n- il tempo impiegato di tipo intero \n- eventuali note di tipo string\n\n *Il nome della commessa (commissionName) deve fare parte dell'insieme delle commesse presenti nel database, ricavaibili tramite la chiamata GET \"/commissions\".\n *Il nome della lavorazione (manufacturingName) deve fare parte dell'insieme delle lavorazioni presenti nel database, ricavaibili tramite la chiamata GET \"/manufacturing\".",
+        "description": "Questa è una chiamata di tipo POST utilizzata per inserire una nuova attività.\n\nRichiede che vengano passati i seguenti parametri: \n- il nome della commessa di tipo string* \n- il nome della lavorazione di tipo string* \n- la data di tipo date \n- il tempo impiegato di tipo intero \n- eventuali note di tipo string\n\n *Il nome della commessa (commissionName) deve fare parte dell'insieme delle commesse presenti nel database, ricavaibili tramite la chiamata GET \"/commissions\".\n *Il nome della lavorazione (manufactureName) deve fare parte dell'insieme delle lavorazioni presenti nel database, ricavaibili tramite la chiamata GET \"/manufacture\".",
         "operationId": "addActivity",
         "parameters": [
           {
@@ -37,10 +33,13 @@
           }],
         "responses": {
           "400": {
-            "description": "Error"
+            "description": "Errore: richiesta malformata"
           },
-          "200": {
-            "description": "Successful operation"
+          "404": {
+            "description": "Errore: il nome della commessa e/o della lavorazione risultano inesistenti"
+          },
+          "201": {
+            "description": "Operazione eseguita con successo"
           }
         }
       },
@@ -52,11 +51,8 @@
         "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi a tutte le attività inserite.",
         "operationId": "getActivities",
         "responses": {
-          "400": {
-            "description": "Error"
-          },
           "200": {
-            "description": "Successful operation"
+            "description": "Operazione eseguita con successo"
           }
         }
       }
@@ -80,11 +76,11 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Error"
+          "404": {
+            "description": "Errore: attività non trovata"
           },
           "200": {
-            "description": "Successful operation"
+            "description": "Operazione eseguita con successo"
           }
         }
       },
@@ -114,7 +110,17 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "400": {
+            "description": "Errore: richiesta malformata"
+          },
+          "404": {
+            "description": "Errore: attività inesistente"
+          },
+          "200": {
+            "description": "Operazione eseguita con successo"
+          }
+        }
       },
       "delete":  {
         "tags": [
@@ -135,10 +141,13 @@
         ],
         "responses": {
           "400": {
-            "description": "Error"
+            "description": "Errore: richiesta malformata"
+          },
+          "404": {
+            "description": "Errore: attività inesistente"
           },
           "200": {
-            "description": "Successful operation"
+            "description": "Operazione eseguita con successo"
           }
         }
       }
@@ -162,11 +171,14 @@
         ],
         "responses": {
           "400": {
-            "description": "Error"
+            "description": "Errore: richiesta malformata"
+          },
+          "404": {
+            "description": "Errore: nome commessa inesistente"
           },
           "200": {
-            "description": "Successful operation"
-            }
+            "description": "Operazione eseguita con successo"
+          }
           }
         }
       },
@@ -179,29 +191,23 @@
         "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi a tutte le commesse .",
         "operationId": "getCommissions",
         "responses": {
-          "400": {
-            "description": "Error"
-          },
           "200": {
-            "description": "Successful operation"
+            "description": "Operazione eseguita con successo"
           }
         }
       }
     },
-    "/manufacturing": {
+    "/manufacture": {
       "get": {
         "tags": [
           "Chiamate relative alle lavorazioni"
         ],
         "summary": "Recupero di tutte le lavorazioni",
         "description": "Questa è una chiamata di tipo GET utilizzata per recuperare i dati relativi a tutte le lavorazioni.",
-        "operationId": "getManufacturing",
+        "operationId": "getmanufacture",
         "responses": {
-          "400": {
-            "description": "Error"
-          },
           "200": {
-            "description": "Successful operation"
+            "description": "Operazione eseguita con successo"
           }
         }
       }
@@ -214,7 +220,7 @@
           "type": "string",
           "description": "Nome della commessa"
         },
-        "manufacturingName": {
+        "manufactureName": {
           "type": "string",
           "description": "Nome della lavorazione"
         },
