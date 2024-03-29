@@ -1,32 +1,30 @@
-# Progetto di ingegneria del software
+# Software Engineering Project - University of Trento
+This project was carried out for the Software Engineering course at the University of Trento.
 
-Questo progetto è stato realizzato per il corso di Ingegneria del Software presso l'Università di Trento.
-
-## Tabella dei contenuti
-
-- [Architettura](#architettura)
-- [Struttura](#struttura)
-- [Utilizzo](#utilizzo)
-     - [Prerequisiti](#prerequisiti)
+## Table of Contents
+- [Architecture](#architecture)
+- [Structure](#structure)
+- [Usage](#usage)
+     - [Prerequisites](#prerequisites)
      - [Back-end](#back-end)
          - [Testing](#testing)
      - [Front-end](#front-end)
-- [Crediti](#crediti)
+- [Credits](#credits)
         
 
 ## Architettura
 
-![gif architettura](architecture.gif)
+![Architecture GIF](architecture.gif)
 
-- Vue Router consente la navigazione tra pagine
-- Vue Client invia e riceve richieste http usando `axios`
-- Express fornisce il collegamento alle API
-- Sequelize ORM consente l'interazione tra db e applicazione
+- Vue Router enables navigation between pages
+- Vue Client sends and receives http requests using `axios`
+- Express provides the link to the APIs
+- Sequelize ORM enables interaction between the database and the application
 
 ---
 
-## Struttura
-Struttura delle cartelle
+## Structure
+Folder structure
 ```shell
 back-end
 ├── app
@@ -42,34 +40,34 @@ back-end
     
 front-end
 ├── public
-└── src
+└── src 
     ├── assets
     ├── components
     └── services
 ```
+### Usage
 
-## Utilizzo
+### Prerequisites
 
-### Prerequisiti
-
-Aver già installato:
+Make sure you have already installed:
 - [NodeJs & npm](https://nodejs.org/en/download/)
 - [MySQL server](https://dev.mysql.com/downloads/mysql/)
 
 ### Back-end
-Modificare il file `back-end/db/config/config.json` con i propri dati
+Modify the file `back-end/db/config/config.json` with your own data
 ```shell
 cd back-end/  
 npm ci 
 npm run db:reset
 npm start
 ```
-Documentazione delle API disponibile all'indirizzo `http://localhost:8080/api-docs/`
+API documentation is available at `http://localhost:8080/api-docs/`
 
 #### Testing
 ```shell
 npm test
 ```
+
 ### Front-end
 ```shell
 cd front-end/
@@ -77,13 +75,12 @@ npm ci
 npm run serve
 ```
 
-Server in esecuzione all'indirizzo `http://localhost:8081/`
+Server running at `http://localhost:8081/`
 
 ---
 
-## Crediti
+## Credits
 
-La base di questo progetto è stata realizzata tramite questi tutorial:
-- [Struttura generale](https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/)
-- [Sequelize CLI e testing](https://levelup.gitconnected.com/building-an-express-api-with-sequelize-cli-and-unit-testing-882c6875ed59)
-
+The foundation of this project was built following these tutorials:
+- [General Structure](https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/)
+- [Sequelize CLI and Testing](https://levelup.gitconnected.com/building-an-express-api-with-sequelize-cli-and-unit-testing-882c6875ed59)
