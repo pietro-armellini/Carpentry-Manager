@@ -1,4 +1,5 @@
-# Software Engineering Project - University of Trento
+# Carpentry Manager
+### Software Engineering Project - University of Trento
 This project was carried out for the Software Engineering course at the University of Trento.
 
 ## Table of Contents
