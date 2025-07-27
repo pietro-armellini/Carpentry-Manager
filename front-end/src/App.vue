@@ -1,13 +1,13 @@
 <template>
   <main>
     <nav class="navbar navbar-expand navbar-dark" style="background-color: #53534c;">
-      <router-link to="/" class="navbar-brand">Gestionale falegnameria</router-link>
+      <router-link to="/" class="navbar-brand">Carpentry Management</router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/activities" class="nav-link">Lista attività</router-link>
+          <router-link to="/activities" class="nav-link">Activity List</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/add" class="nav-link">Aggiungi attività</router-link>
+          <router-link to="/add" class="nav-link">Add Activity</router-link>
         </li>
       </div>
     </nav>
@@ -22,7 +22,7 @@
           src="./assets/logo.png"
           style="max-width: 12.5%; margin-left: auto; margin-right: auto; display: block;" />
     <section class="mb-4">
-      <p>Realizzato dal gruppo G06</p>
+      <p>Created by group G06</p>
     </section>
   </footer>
 </template>

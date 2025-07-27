@@ -2,7 +2,7 @@
   <div class="submit-form">
     <div v-if="!submitted">
       <div class="form-group">
-        <label for="date">Data attività</label>
+        <label for="date">Activity Date</label>
         <input
             type="date"
             class="form-control"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="form-group">
-        <label for="commessa">Selezione commesse</label>
+        <label for="commessa">Select Commission</label>
         <select class="form-control"
                 id="commessa"
                 v-model="activity.commissionName"
@@ -26,7 +26,7 @@
       </div>
 
       <div class="form-group">
-        <label for="lavorazione">Selezione lavorazione</label>
+        <label for="lavorazione">Select Manufacture</label>
         <select
             class="form-control"
             id="lavorazione"
@@ -39,7 +39,7 @@
       </div>
 
       <div class="form-group">
-        <label for="tempo">Tempo impiegato (min)</label>
+        <label for="tempo">Time Spent (min)</label>
         <input
             type="number"
             class="form-control"
@@ -52,7 +52,7 @@
 
 
       <div class="form-group">
-        <label for="note">Note</label>
+        <label for="note">Notes</label>
         <input
             type="text"
             class="form-control"
@@ -65,19 +65,19 @@
 
       <div style="display:table; margin:0 auto;">
         <button @click="saveActivity" class="btn btn-success" style="padding:5px; background-color:#5C7563; border-color: white !important;">
-          Aggiungi</button>
+          Add</button>
       </div>
     </div>
 
     <div v-else style="display:table; margin:0 auto;">
-      <h4>Attività inserita</h4>
+      <h4>Activity Added</h4>
       <button class="btn btn-success" @click="newActivity" style="padding:5px; background-color:#5C7563; border-color: white !important;">
-        Aggiungine un'altra</button>
+        Add Another</button>
     </div>
 
     <div v-if="errors.length">
       <br>
-      <b>Impossibile inserire l'attività:</b>
+      <b>Unable to add activity:</b>
       <ul>
         <li v-for="error in errors" v-bind:key="error.id">{{ error }}</li>
       </ul>

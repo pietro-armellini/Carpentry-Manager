@@ -6,52 +6,52 @@ module.exports = {
         'activities',
         [
           {
-            commissionName: 'Panchine parco Sant\'Anna',
-            manufactureName: 'Verniciatura',
+            commissionName: 'Benches Sant\'Anna Park',
+            manufactureName: 'Painting',
             date: '2021-12-01',
-            notes: 'Le panchine sono state verniciate con impregnante bianco',
+            notes: 'The benches were painted with white wood stain',
             time: 120
           },
           {
-            commissionName: 'Cucina rifugio Bella Vista',
-            manufactureName: 'Assemblaggio',
+            commissionName: 'Bella Vista Refuge Kitchen',
+            manufactureName: 'Assembly',
             date: '2021-12-05',
-            notes: 'Sono stati assemblati quattro mobili',
+            notes: 'Four cabinets were assembled',
             time: 70
           },
           {
-            commissionName: 'Staccionata sentiero SAT 64',
-            manufactureName: 'Levigatura',
+            commissionName: 'SAT 64 Trail Fence',
+            manufactureName: 'Sanding',
             date: '2021-12-12',
-            notes: 'E\' stata utilizzata carta vetrata con grana 120',
+            notes: 'Sandpaper with 120 grit was used',
             time: 60
           },
           {
-            commissionName: 'Leggii scuola elementare S. Perotti',
-            manufactureName: 'Lucidatura',
+            commissionName: 'S. Perotti Elementary School Lecterns',
+            manufactureName: 'Polishing',
             date: '2021-12-20',
-            notes: 'Sono stati lucidati cinque leggii',
+            notes: 'Five lecterns were polished',
             time: 10
           },
           {
-            commissionName: 'Banchi DISI',
-            manufactureName: 'Taglio',
+            commissionName: 'DISI Desks',
+            manufactureName: 'Cutting',
             date: '2021-12-03',
-            notes: 'Il tagli è stato effettuato con un lama da 34 denti',
+            notes: 'The cut was made with a 34-tooth blade',
             time: 45
           },
           {
-            commissionName: 'Cucina rifugio Bella Vista',
-            manufactureName: 'Finitura',
+            commissionName: 'Bella Vista Refuge Kitchen',
+            manufactureName: 'Finishing',
             date: '2021-12-09',
-            notes: 'E\' stato installato il bordo del top',
+            notes: 'The countertop edge was installed',
             time: 35
           },
           {
-            commissionName: 'Tetto Giovannini',
-            manufactureName: 'Piallatura',
+            commissionName: 'Giovannini Roof',
+            manufactureName: 'Planing',
             date: '2021-12-26',
-            notes: 'Sono state piallate 15 travi',
+            notes: '15 beams were planed',
             time: 200
           }
         ],

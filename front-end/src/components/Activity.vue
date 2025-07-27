@@ -1,6 +1,6 @@
 <template>
   <div v-if="currentActivity" class="edit-form">
-    <h4>Attività</h4>
+    <h4>Activity</h4>
     <form>
       <div class="form-group">
         <label for="id">Id</label>
@@ -10,28 +10,28 @@
         />
       </div>
       <div class="form-group">
-        <label for="commissionName">commissionName</label>
+        <label for="commissionName">Commission Name</label>
         <input type="text" class="form-control" id="commissionName"
                readonly
                v-model="currentActivity.commissionName"
         />
       </div>
       <div class="form-group">
-        <label for="manufactureName">manufactureName</label>
+        <label for="manufactureName">Manufacture Name</label>
         <input type="text" class="form-control" id="manufactureName"
                readonly
                v-model="currentActivity.manufactureName"
         />
       </div>
       <div class="form-group">
-        <label for="date">Data</label>
+        <label for="date">Date</label>
         <input type="text" class="form-control" id="date"
                readonly
                v-model="currentActivity.date"
         />
       </div>
       <div class="form-group">
-        <label for="time">Tempo</label>
+        <label for="time">Time Spent (min)</label>
         <input type="text" class="form-control" id="time"
                readonly
                v-model="currentActivity.time"
@@ -46,7 +46,7 @@
     </form>
     <div style="display:table; margin:0 auto;">
       <span style="padding:5px; background-color:#5C7563;" type="submit" class="badge badge-success text-white" @click="updateActivity">
-        Salva<img src="../assets/save_icon.png">
+        Save<img src="../assets/save_icon.png">
       </span>
     </div>
     <br>
@@ -86,7 +86,7 @@ export default {
       ActivityDataService.update(this.currentActivity.id, this.currentActivity)
           .then(response => {
             console.log(response.data);
-            this.message = 'L\'attività è stata modificata con successo';
+            this.message = 'Activity updated successfully';
           })
           .catch(e => {
             console.log(e);

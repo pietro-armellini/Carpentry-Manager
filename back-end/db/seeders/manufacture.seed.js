@@ -5,17 +5,17 @@ module.exports = {
     return queryInterface.bulkInsert(
         'manufactures',
         [
-          {name: 'Taglio'},
-          {name: 'Levigatura'},
-          {name: 'Piallatura'},
-          {name: 'Verniciatura'},
-          {name: 'Sverniciatura'},
-          {name: 'Assemblaggio'},
-          {name: 'Fresatura'},
-          {name: 'Finitura'},
-          {name: 'Lucidatura'},
-          {name: 'Rusticatura'},
-          {name: 'Spazzolatura'}
+          {name: 'Cutting'},
+          {name: 'Sanding'},
+          {name: 'Planing'},
+          {name: 'Painting'},
+          {name: 'Stripping'},
+          {name: 'Assembly'},
+          {name: 'Milling'},
+          {name: 'Finishing'},
+          {name: 'Polishing'},
+          {name: 'Rustication'},
+          {name: 'Brushing'}
         ],
         {});
   },

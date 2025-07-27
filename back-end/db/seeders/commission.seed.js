@@ -5,12 +5,12 @@ module.exports = {
     return queryInterface.bulkInsert(
         'commissions',
         [
-          {name: 'Panchine parco Sant\'Anna'},
-          {name: 'Cucina rifugio Bella Vista'},
-          {name: 'Staccionata sentiero SAT 64'},
-          {name: 'Leggii scuola elementare S. Perotti'},
-          {name: 'Banchi DISI'},
-          {name: 'Tetto Giovannini'}
+          {name: 'Benches Sant\'Anna Park'},
+          {name: 'Bella Vista Refuge Kitchen'},
+          {name: 'SAT 64 Trail Fence'},
+          {name: 'S. Perotti Elementary School Lecterns'},
+          {name: 'DISI Desks'},
+          {name: 'Giovannini Roof'}
         ],
         {});
   },

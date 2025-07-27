@@ -1,7 +1,7 @@
 <template>
   <div class="list row">
     <div class="col-md-8">
-      <h4 for="commessa">Filtra per commessa</h4>
+      <h4 for="commessa">Filter by commission</h4>
       <div class="input-group mb-3">
         <div class="input-group-append">
           <select class="form-control"
@@ -10,7 +10,7 @@
                   name="commessa"
                   @change=searchByCommissionName
           >
-            <option selected  value="-1">Tutte le commesse</option>
+            <option selected value="-1">All commissions</option>
             <option v-for="option in commissions" :value="option.value" :key="option.value">
               {{ option.text }}
             </option>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <h4>Lista attività</h4>
+      <h4>Activity List</h4>
       <ul class="list-group">
         <li class="list-group-item"
             :class="{ active: index == currentIndex }"
@@ -35,38 +35,38 @@
     </div>
     <div class="col-md-6">
       <div v-if="currentActivity">
-        <h4>Attività</h4>
+        <h4>Activity</h4>
         <div>
           <label><strong>Id:</strong> {{ "#"+currentActivity.id }}</label>
         </div>
         <div>
-          <label><strong>Data:</strong> {{ currentActivity.date}}</label>
+          <label><strong>Date:</strong> {{ currentActivity.date}}</label>
         </div>
         <div>
-          <label><strong>Tempo:</strong> {{ currentActivity.time + " minuti"}}</label>
+          <label><strong>Time:</strong> {{ currentActivity.time + " minutes"}}</label>
         </div>
         <div>
-          <label><strong>Commessa:</strong> {{ currentActivity.commissionName}}</label>
+          <label><strong>Commission:</strong> {{ currentActivity.commissionName}}</label>
         </div>
         <div>
-          <label><strong>Lavorazione:</strong> {{ currentActivity.manufactureName}}</label>
+          <label><strong>Manufacture:</strong> {{ currentActivity.manufactureName}}</label>
         </div>
         <div>
-          <label><strong>Note:</strong> {{ currentActivity.notes }}</label>
+          <label><strong>Notes:</strong> {{ currentActivity.notes }}</label>
         </div>
         <br>
 
         <div style="display:table; margin:0 auto;">
-          <span  style="padding:30px;"><router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning text-white" style="padding:5px; background-color:#9C9C5C;">
-            Modifica<img src="../assets/edit_icon.png"></router-link></span>
+          <span style="padding:30px;"><router-link :to="'/activities/' + currentActivity.id" class="badge badge-warning text-white" style="padding:5px; background-color:#9C9C5C;">
+            Edit<img src="../assets/edit_icon.png"></router-link></span>
           <span style="padding:5px; background-color:#7F5353;" type="submit" class="badge badge-danger text-white" @click="deleteActivity">
-            Rimuovi<img src="../assets/delete_icon.png">
+            Remove<img src="../assets/delete_icon.png">
           </span>
         </div>
       </div>
       <div v-else>
         <br />
-        <p>Premi su un'attività per visualizzarne i dettagli</p>
+        <p>Click on an activity to view its details</p>
       </div>
       <br>
     </div>
