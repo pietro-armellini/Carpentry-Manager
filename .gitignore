@@ -9,6 +9,11 @@ node_modules/
 # Vue build
 dist/
 
+
+# Ignore only the backend config.json
+back-end/db/config/config.json
+
+
 # Icon must end with two \r
 Icon
 
